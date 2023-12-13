@@ -14,7 +14,7 @@
 // Execute `rustlings hint hashmaps2` or use the `hint` watch subcommand for a
 // hint.
 
-use std::{collections::HashMap};
+use std::collections::HashMap;
 
 #[derive(Hash, PartialEq, Eq)]
 enum Fruit {
