@@ -7,6 +7,8 @@
 // Execute `rustlings hint from_into` or use the `hint` watch subcommand for a
 // hint.
 
+use std::fmt::Error;
+
 #[derive(Debug)]
 struct Person {
     name: String,
@@ -44,6 +46,25 @@ impl Default for Person {
 
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        if s.is_empty() {
+           Person::default()
+        }else{
+            let mut iter = s.split(',');        
+            let name = match iter.next(){
+                Some("") | None => return Person::default(),
+                Some(n) => String::from(n),
+            };
+            let age = match iter.next(){
+                None => return Person::default(),
+                Some(a) => match a.parse::<usize>() {
+                    Ok(x) => x,
+                    Err(_) => return Person::default()
+                }
+            };
+
+            Person{name, age}
+        }
+        
     }
 }
 
